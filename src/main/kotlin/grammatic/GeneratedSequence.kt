@@ -33,9 +33,13 @@ class GeneratedSequence(grammatics: DataGrammatics) {
         }
         val nonteriman = sequence[indexNonterminal]
         for ( rule in rules[nonteriman]!!){
-            val replaceString = sequence.replaceFirst(nonteriman.toString(),rule)
-            if(detectInfiniteRecursion(replaceString, maxLen)) continue
-            generated(replaceString, minLen, maxLen)
+            try {
+                val replaceString = sequence.replaceFirst(nonteriman.toString(), rule)
+                if(detectInfiniteRecursion(replaceString, maxLen)) continue
+                generated(replaceString, minLen, maxLen)
+            }catch (e:Exception) {
+
+            }
         }
     }
 
